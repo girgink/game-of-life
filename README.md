@@ -26,9 +26,10 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life):
 ### <a href="input-file-format"></a>Input file format
 * The first line indicates the width and height of the grid as unsigned integer values separated by a space.
 * The second line indicates the number of generations to be simulated as unsigned integer.
-* The other lines indicate the locations of the living cells initially. Each line has two unsigned integer values separated by space indicating zero-indexed horizontal and vertical coordinates of the living cells, respectively.
-    * Valid horizontal coordinate values range between 0 - (width-1)
-    * Valid vertical coordinate values range between 0 - (height-1)
+* The other lines indicate the initial locations of the living cells. Each line has two unsigned integer values separated by space indicating vertical and horizontal coordinates of the living cells, respectively.
+    * The top left cell has the coordinates of (0, 0)
+    * Valid vertical coordinate values range between 0 - (height-1), increasing from top to bottom.
+    * Valid horizontal coordinate values range between 0 - (width-1), increasing from left to right.
 
 Example:
 ```
