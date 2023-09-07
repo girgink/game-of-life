@@ -21,6 +21,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life):
 * The script reads the size of the grid, the number of generations to be simulated, and the initial pattern from a text file.
 * It applies the [rules](#rules) for the number of generations indicated in the input fule.
 * It writes the final pattern to a text file.
+* Input and output file names are provided as the first and second arguments, respectively.
 
 ### <a href="input-file-format"></a>Input file format
 * The first line indicates the width and height of the grid as unsigned integer values separated by a space.
