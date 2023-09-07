@@ -3,13 +3,13 @@ import sys
 def grid_dims(grid):
     return len(grid), len(grid[0])
 
-def read_input(inp):
+def read_input(inp, skip_n = False):
     with open(inp) as f:
         w, h = map(int, f.readline().split())
         grid = []
         for y in range(h):
             grid.append([0] * w)
-        n = int(f.readline())
+        n = None if skip_n else int(f.readline())
         for line in f:
             y, x = map(int, line.split())
             grid[y][x] = 1
