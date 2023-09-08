@@ -30,15 +30,12 @@ def write_output(grid, out):
                     f.write(f"{y} {x}\n")
 
 
-def create_input(w, h, alive=0.5, n=10, filename=None, overwrite=False):
+def create_input(w, h, alive=0.5, filename=None, overwrite=False):
     if alive < 0 or alive > 1.0:
         raise ValueError("Invalid alive percentage.")
 
-    if n < 1:
-        raise ValueError("Invalid number of generations.")
-
     if not filename:
-        filename = f"input_{w}x{h}_{alive}_{n}.txt"
+        filename = f"input_{w}x{h}_{alive}.txt"
 
     if os.path.exists(filename) and not overwrite:
         raise FileExistsError
@@ -48,7 +45,6 @@ def create_input(w, h, alive=0.5, n=10, filename=None, overwrite=False):
 
     with open(filename, "w") as f:
         f.write(f"{w} {h}\n")
-        f.write(f"{n}\n")
         while m > 0:
             x, y = random.randrange(w), random.randrange(h)
             idx = y * w + x

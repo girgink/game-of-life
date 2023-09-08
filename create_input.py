@@ -23,12 +23,9 @@ def main():
         opts["alive"] = float(sys.argv[3])
 
     if num_args > 4:
-        opts["n"] = int(sys.argv[4])
-
-    if num_args > 5:
         opts["filename"] = sys.argv[5]
 
-    if num_args > 6:
+    if num_args > 5:
         val = str(sys.argv[6]).upper()
         opts["overwrite"] = val in ["YES", "Y", "1", "TRUE"]
 
