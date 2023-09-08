@@ -20,14 +20,50 @@ def read_input(inp):
     return grid
 
 
-def write_output(grid, out):
-    with open(out, "w") as f:
+def write_output(grid, filename):
+    with open(filename, "w") as f:
         w, h = grid_dims(grid)
         f.write(f"{w} {h}\n")
         for y, row in enumerate(grid):
             for x, cell in enumerate(row):
                 if cell:
                     f.write(f"{y} {x}\n")
+
+
+def save_grid_as_rle(grid, filename, overwrite=False):
+    if os.path.exists(filename) and not overwrite:
+        raise FileExistsError
+
+    w, h = grid_dims(grid)
+
+    with open(filename, "w") as f:
+        f.write(f"x = {w}, y = {h}, rule = B3/S23:P{w},{h}\n")
+        str = ""
+        val = None
+        run = 0
+        for y, row in enumerate(grid):
+            for x, cell in enumerate(row):
+                if val is None:
+                    val = cell
+                    run = 1
+                elif val == cell:
+                    run += 1
+                else:
+                    str += "{}{}".format(run if run > 1 else "", "o" if val == 1 else "b")
+                    if len(str) > 68:
+                        f.write(f"{str}\n")
+                        str = ""
+                    val = cell
+                    run = 1
+            if val is not None:
+                str += "{}{}".format(run if run > 1 else "", "o" if val == 1 else "b")
+                val = None
+            str += "$"
+            if len(str) > 68:
+                f.write(f"{str}\n")
+                str = ""
+
+        f.write(f"{str}!\n")
 
 
 def create_input(w, h, alive=0.5, filename=None, overwrite=False):
@@ -103,7 +139,7 @@ def main():
     try:
         n = int(sys.argv[3])
     except IndexError:
-        n = 10
+        sys.exit("No number of generations.")
     except ValueError:
         sys.exit("Invalid number of generations.")
 
