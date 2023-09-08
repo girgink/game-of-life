@@ -7,7 +7,7 @@ def grid_dims(grid):
     return len(grid), len(grid[0])
 
 
-def read_input(inp):
+def read_grid(inp):
     with open(inp) as f:
         w, h = map(int, f.readline().split())
         grid = []
@@ -20,7 +20,7 @@ def read_input(inp):
     return grid
 
 
-def write_output(grid, filename):
+def save_grid(grid, filename):
     with open(filename, "w") as f:
         w, h = grid_dims(grid)
         f.write(f"{w} {h}\n")
@@ -66,7 +66,7 @@ def save_grid_as_rle(grid, filename, overwrite=False):
         f.write(f"{str}!\n")
 
 
-def create_input(w, h, alive=0.5, filename=None, overwrite=False):
+def create_grid(w, h, alive=0.5, filename=None, overwrite=False):
     if alive < 0 or alive > 1.0:
         raise ValueError("Invalid alive percentage.")
 
@@ -132,7 +132,7 @@ def main():
         sys.exit("No output filename.")
 
     try:
-        grid = read_input(inp)
+        grid = read_grid(inp)
     except FileNotFoundError:
         sys.exit("Input file not found.")
 
@@ -146,7 +146,7 @@ def main():
     for i in range(n):
         grid = tick(grid)
 
-    write_output(grid, out)
+    save_grid(grid, out)
 
 
 if __name__ == "__main__":

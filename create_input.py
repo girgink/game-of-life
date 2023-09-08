@@ -1,5 +1,5 @@
 import sys
-from game import create_input
+from game import create_grid
 
 
 def main():
@@ -29,7 +29,7 @@ def main():
         val = str(sys.argv[6]).upper()
         opts["overwrite"] = val in ["YES", "Y", "1", "TRUE"]
 
-    create_input(w, h, **opts)
+    create_grid(w, h, **opts)
 
 
 if __name__ == "__main__":

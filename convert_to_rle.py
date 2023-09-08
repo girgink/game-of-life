@@ -1,6 +1,6 @@
 import sys
 import os.path
-from game import read_input, save_grid_as_rle
+from game import read_grid, save_grid_as_rle
 
 
 def main():
@@ -21,7 +21,7 @@ def main():
     if num_args > 3:
         opts["overwrite"] = sys.argv[4].upper() in ["YES", "Y", "1", "TRUE"]
 
-    grid = read_input(inp)
+    grid = read_grid(inp)
 
     save_grid_as_rle(grid, out, **opts)
 
