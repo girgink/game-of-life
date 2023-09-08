@@ -1,6 +1,7 @@
 import sys
 import os.path
 import random
+import time
 
 
 def grid_dims(grid):
@@ -143,8 +144,12 @@ def main():
     except ValueError:
         sys.exit("Invalid number of generations.")
 
+    start = time.time()
+
     for i in range(n):
         grid = tick(grid)
+
+    print("{} seconds elapsed for {} generations.".format(round(time.time() - start, 2), n))
 
     save_grid(grid, out)
 
