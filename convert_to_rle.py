@@ -8,14 +8,14 @@ def val_bool(val):
     return val == "YES" or val == "Y" or val == "1" or val == "TRUE"
 
 
-def convert_to_rle(inp, out=None, skip_n=False, overwrite=False):
+def convert_to_rle(inp, out=None, overwrite=False):
     if not out:
         out = os.path.splitext(inp)[0] + ".rle"
 
     if os.path.exists(out) and not overwrite:
         raise FileExistsError
 
-    grid, _ = read_input(inp, skip_n=skip_n)
+    grid, _ = read_input(inp)
 
     w, h = grid_dims(grid)
 
@@ -63,10 +63,7 @@ def main():
         opts["out"] = str(sys.argv[2])
 
     if num_args > 3:
-        opts["skip_n"] = val_bool(sys.argv[3])
-
-    if num_args > 4:
-        opts["overwrite"] = val_bool(sys.argv[4])
+        opts["overwrite"] = sys.argv[4].upper() in ["YES", "Y", "1", "TRUE"]
 
     convert_to_rle(inp, **opts)
 
