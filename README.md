@@ -23,14 +23,20 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life):
 * It applies the [rules](#rules) for the number of generations indicated as an argument.
 * It writes the final pattern to the output file.
 
-### <a href="input-file-format"></a>Input file format
+## Input and output file format
 * The first line indicates the width and height of the grid as unsigned integer values separated by a space.
 * The other lines indicate the initial locations of the living cells. Each line has two unsigned integer values separated by space indicating vertical and horizontal coordinates of the living cells, respectively.
     * The top left cell has the coordinates of (0, 0)
     * Valid vertical coordinate values range between 0 - (height-1), increasing from top to bottom.
     * Valid horizontal coordinate values range between 0 - (width-1), increasing from left to right.
 
-Example:
+## Example
+
+```
+python game.py input.txt output.txt 2
+```
+
+Input:
 ```
 5 5
 0 0
@@ -41,10 +47,7 @@ Example:
 ```
 [input.txt](test/input_5x5.txt)
 
-### Output file format
-* Identical to the [input file format](#input-file-format).
-
-Example:
+Output:
 ```
 5 5
 1 1
