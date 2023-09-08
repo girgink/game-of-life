@@ -18,14 +18,13 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life):
     3. All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 
 ## Implementation
-* The script reads the size of the grid, the number of generations to be simulated, and the initial pattern from a text file.
-* It applies the [rules](#rules) for the number of generations indicated in the input fule.
-* It writes the final pattern to a text file.
-* Input and output file names are provided as the first and second arguments, respectively.
+* Input file name, output file name, and number of generations are provided as arguments to the script.
+* The script reads the size of the grid and the initial pattern from the input file.
+* It applies the [rules](#rules) for the number of generations indicated as an argument.
+* It writes the final pattern to the output file.
 
 ### <a href="input-file-format"></a>Input file format
 * The first line indicates the width and height of the grid as unsigned integer values separated by a space.
-* The second line indicates the number of generations to be simulated as unsigned integer.
 * The other lines indicate the initial locations of the living cells. Each line has two unsigned integer values separated by space indicating vertical and horizontal coordinates of the living cells, respectively.
     * The top left cell has the coordinates of (0, 0)
     * Valid vertical coordinate values range between 0 - (height-1), increasing from top to bottom.
@@ -34,18 +33,16 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life):
 Example:
 ```
 5 5
-2
 0 0
 2 1
 2 2
 3 2
 3 4
 ```
-[input.txt](test/input_5x5_2.txt)
+[input.txt](test/input_5x5.txt)
 
 ### Output file format
-* The first line indicates the width and height of the grid as unsigned integer values separated by a space.
-* The other lines indicate the locations of the living cells initially. Each line has two unsigned integer values separated by space indicating zero-indexed horizontal and vertical coordinates of the living cells, respectively. See [input file format](#input-file-format) for details.
+* Identical to the [input file format](#input-file-format).
 
 Example:
 ```
