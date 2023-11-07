@@ -90,7 +90,6 @@ def create_grid(w, h, alive=0.5, filename=None, overwrite=False):
                 skip[idx] = True
                 m -= 1
 
-
 def tick(grid):
     w, h = grid_dims(grid)
     temp = []
@@ -118,6 +117,7 @@ def tick(grid):
                 cell = 0
 
             temp[y][x] = cell
+
     return temp
 
 
@@ -133,9 +133,15 @@ def main():
         sys.exit("No output filename.")
 
     try:
+        print(f"Reading {inp}...")
         grid = read_grid(inp)
     except FileNotFoundError:
         sys.exit("Input file not found.")
+
+    size = sys.getsizeof(grid)
+    for row in grid:
+        size += sys.getsizeof(row)
+    print("Size of grid: {} MB".format(round(size / 2**20, 2)))
 
     try:
         n = int(sys.argv[3])
@@ -147,10 +153,12 @@ def main():
     start = time.time()
 
     for i in range(n):
+        print(f"Tick {i}...")
         grid = tick(grid)
 
     print("{} seconds elapsed for {} generations.".format(round(time.time() - start, 2), n))
 
+    print(f"Writing {out}...")
     save_grid(grid, out)
 
 
